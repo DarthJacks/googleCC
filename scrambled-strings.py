@@ -1,6 +1,7 @@
 import sys, getopt
 import logging
-logging.basicConfig(filename="app.log", filemode="w", format="%(name)s - %(levelname)s - %(message)s")
+import test
+logging.basicConfig(level=logging.INFO, format='%(asctime)s :: %(levelname)s :: %(message)s')
 
 # def checkWordSorted(inputWord, dictWord):
 #   if sorted(inputWord) == sorted(dictWord):
@@ -10,7 +11,8 @@ logging.basicConfig(filename="app.log", filemode="w", format="%(name)s - %(level
 
 def logOut(logText):
   if verbose:
-    print(logText)
+    logging.info(logText)
+
 
 def runMain(dictionaryFile, inputFile):
 
@@ -29,17 +31,17 @@ def runMain(dictionaryFile, inputFile):
       scrambledOccurances = 0
       word = x.strip()
       lenword = len(word)
-      logOut("Checking " + word + ", length " + str(lenword))
+      logOut("Checking [" + word + "], length " + str(lenword))
       lenInput = len(inputf)
       
       for step in range(lenInput-lenword+1):
         endingStep = step+lenword
         chekDictionary = inputf[step:endingStep]
         if chekDictionary == word:
-          logOut(word + " occurs in its original form, possition " + str(step) )
+          logOut("[" + word + "] occurs in its original form, possition " + str(step) )
           unScrambledOccurances += 1
         elif sorted(word) == sorted(chekDictionary) and word[0] == chekDictionary[0] and word[lenword-1] == chekDictionary[lenword - 1]:
-          logOut(word + " occurs in its scrambled form as " + chekDictionary + ", possition " + str(step))
+          logOut("[" + word + "] occurs in its scrambled form as " + chekDictionary + ", possition " + str(step))
           scrambledOccurances += 1
           
         
@@ -49,6 +51,7 @@ def runMain(dictionaryFile, inputFile):
         wordHits += 1
 
     print("Case #" + str(caseNum) + ": " + str(wordHits))
+    logOut("------------------------------------------------------")
     dfile.close()
 
     caseNum += 1
@@ -58,7 +61,7 @@ def runMain(dictionaryFile, inputFile):
 
 if __name__ == "__main__":
   dictionary_filename = "dict"
-  input_file = "input"
+  input_filename = "input"
   verbose = False
   
   try:
@@ -70,20 +73,17 @@ if __name__ == "__main__":
       if opt in ("-d", "--dictionary"):
           dictionary_filename = arg
       elif opt in ("-i", "--input"):
-          input_file = arg
+          input_filename = arg
       elif opt in ("-v", "--verbose"):
           verbose = True
   except getopt.GetoptError:
-    print ("test.py --input <inputfile> --dictionary <dictionaryfile> -v verbose ")
+    print ("scrambled-strings.py --input <inputfile> --dictionary <dictionaryfile> -v verbose ")
     sys.exit(2)
 
-
-  runMain(dictionary_filename, input_file)
+  if not (test.test_wordlength(dictionary_filename) + test.test_filelength(dictionary_filename) + test.test_double_words(dictionary_filename)):
+    runMain(dictionary_filename, input_filename)
    
 
-  # print ("Dictionary: " + dictionary_filename)
-  # print ("input     : " + input_file)
-  # print ("VERBOSE   : " + str(verbose))
 
 
 
