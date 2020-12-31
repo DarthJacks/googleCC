@@ -131,3 +131,4 @@ dmypy.json
 
 /bash.exe.stackdump
 .vscode
+/vscode
