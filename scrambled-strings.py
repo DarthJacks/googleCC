@@ -1,6 +1,6 @@
 import sys, getopt
 import logging
-logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+logging.basicConfig(filename="app.log", filemode="w", format="%(name)s - %(levelname)s - %(message)s")
 
 # def checkWordSorted(inputWord, dictWord):
 #   if sorted(inputWord) == sorted(dictWord):
@@ -8,13 +8,9 @@ logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(level
 #   else:
 #     return False
 
-inputfile = "1"
-outputfile = "2"
-
-
 def logOut(logText):
-  abc = 1
-  print(logText)
+  if verbose:
+    print(logText)
 
 def runMain(dictionaryFile, inputFile):
 
@@ -47,7 +43,7 @@ def runMain(dictionaryFile, inputFile):
           scrambledOccurances += 1
           
         
-      logOut("Scrambled Occurances: " + str(scrambledOccurances) + ", Unscrambled Occurances: " + str(unScrambledOccurances) + '\n----------------')
+      logOut("Scrambled Occurances: " + str(scrambledOccurances) + ", Unscrambled Occurances: " + str(unScrambledOccurances) + "\n----------------")
 
       if (scrambledOccurances + unScrambledOccurances > 0):
         wordHits += 1
@@ -59,32 +55,42 @@ def runMain(dictionaryFile, inputFile):
 
   inputfile.close()
 
-def mainArgs(argv):
-  inputfile = ""
-  outputfile = ""
-  try:
-    opts, args = getopt.getopt(argv,"hi:o",["ifile=","dfile="])
-  except getopt.GetoptError:
-    print ("test.py -input <inputfile> -dictionary <dictionaryfile>")
-    sys.exit(2)
-  for opt, arg in opts:
-    if opt == '-h':
-      print ("test.py -input <inputfile> -dictionary <dictionaryfile>")
-      sys.exit()
-    elif opt in ("-i", "--ifile"):
-      inputfile = arg
-    elif opt in ("-o", "--dfile"):
-      outputfile = arg
-
-  print ("Input file is " + inputfile)
-  print ("Output file is " + outputfile)
 
 if __name__ == "__main__":
-  #mainArgs(sys.argv[1:])
-  # logging.basicConfig(filename='example.log', encoding='utf-8', level=logging.DEBUG)
-  # logging.debug('This message should go to the log file')
-  # logging.info('So should this')
-  # logging.warning('And this, too')
-  # logging.error('And non-ASCII stuff, too, like Øresund and Malmö')
-  runMain("dict", "input")
+  dictionary_filename = "dict"
+  input_file = "input"
+  verbose = False
+  
+  try:
+    options, remainder = getopt.getopt(sys.argv[1:], "d:i:v", ["dictionary=", 
+                                                          "input=",
+                                                          "verbose",
+                                                          ])
+    for opt, arg in options:
+      if opt in ("-d", "--dictionary"):
+          dictionary_filename = arg
+      elif opt in ("-i", "--input"):
+          input_file = arg
+      elif opt in ("-v", "--verbose"):
+          verbose = True
+  except getopt.GetoptError:
+    print ("test.py --input <inputfile> --dictionary <dictionaryfile> -v verbose ")
+    sys.exit(2)
+
+
+  runMain(dictionary_filename, input_file)
+   
+
+  # print ("Dictionary: " + dictionary_filename)
+  # print ("input     : " + input_file)
+  # print ("VERBOSE   : " + str(verbose))
+
+
+
+  # logging.basicConfig(filename="example.log", encoding="utf-8", level=logging.DEBUG)
+  # logging.debug("This message should go to the log file")
+  # logging.info("So should this")
+  # logging.warning("And this, too")
+  # logging.error("And non-ASCII stuff, too, like Øresund and Malmö")
+  #runMain("dict", "input")
 
