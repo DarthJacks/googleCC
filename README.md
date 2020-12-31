@@ -20,25 +20,25 @@ to be real words.
 2. an input file that contains a list of long strings, each on a newline, that you will need to
 use to search for your dictionary words. E.g. “btahand”
 
-Output
+##Output
 Treating each line of the input file as one search string, your program should output a line Case
 #x: y per input file string, where x is the line number (starting from 1) and y is the number of
 words from the dictionary that appear (in their original or scrambled form) as substrings of the
 given string.
 
-Limits
+##Limits
 - No two words in the dictionary are the same.
 - Each word in the dictionary is between 2 and 105 letters long, inclusive.
 - The sum of lengths of all words in the dictionary does not exceed 105.
 
 
 
-Execution:
-python scrambled-strings.py --dictionary <dictionary file> --input <input file>
+##Execution
+$ python scrambled-strings.py --dictionary <dictionary file> --input <input file>
 #use -v for loggining
-python scrambled-strings.py --dictionary <dictionary file> --input <input file> input -v
+$ python scrambled-strings.py --dictionary <dictionary file> --input <input file> input -v
 
 main will run unit testing to complete the execution 
 
-unit testing can be run individually by executing
-python test.py --dictionary <dictionary file>
+Unit testing can be run individually by executing
+$ python test.py --dictionary <dictionary file>
