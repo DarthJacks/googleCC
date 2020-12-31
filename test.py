@@ -1,3 +1,8 @@
+from collections import Counter
+
+# def list_has_duplicate_items( mylist ):
+#     return len(mylist) > len(set(mylist))
+
 def test_wordlength():
     dfile = open("dict", "r")
     for x in dfile:
@@ -15,13 +20,18 @@ def test_filelength():
 
 def test_double_words():
     dfile = open("dict", "r")
-    wholeFile = open("dict", "r")
-    data = str(wholeFile.read())
-    for x in dfile:
-        word = x.strip()
-        occurances = data.count(word)
-        assert occurances == 1, "Words in Dictionary must occur only once. [" + word + "] appears " + str(occurances) + " times"
-    wholeFile.close()
+
+    wordCount = Counter(dfile.read().split())
+
+    doubleWords = []
+    doubleWordsCounter = 0
+    for i in wordCount:
+        if wordCount[i] > 1:
+            doubleWords.append(i)
+            doubleWordsCounter += 1
+
+    assert doubleWordsCounter == 0, "Words in Dictionary must occur only once. " + str(doubleWords) + " appears more"# + str(occurances) + " times"
+
     dfile.close()
 
 if __name__ == "__main__":
