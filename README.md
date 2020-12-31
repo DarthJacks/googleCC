@@ -30,3 +30,15 @@ Limits
 ● No two words in the dictionary are the same.
 ● Each word in the dictionary is between 2 and 105 letters long, inclusive.
 ● The sum of lengths of all words in the dictionary does not exceed 105.
+
+
+
+Execution:
+python scrambled-strings.py --dictionary <dictionary file> --input <input file>
+#use -v for loggining
+python scrambled-strings.py --dictionary <dictionary file> --input <input file> input -v
+
+main will run unit testing to complete the execution 
+
+unit testing can be run individually by executing
+python test.py --dictionary <dictionary file>
