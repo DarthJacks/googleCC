@@ -1,4 +1,13 @@
 # Code Challenge
+
+## Table of contents
+* [General info](#general-info)
+* [Input](#input)
+* [Output](#output)
+* [Limits](#limits)
+* [Execution](#execution)
+
+## General info
 Count how many of the words from a dictionary appear as substrings in a long string of
 characters either in their original form or in their scrambled form. The scrambled form of the
 dictionary word must adhere to the following rule: the first and last letter must be maintained
@@ -37,7 +46,7 @@ given string.
 ```
 $ python scrambled-strings.py --dictionary <dictionary file> --input <input file>
 ```
-use -v for loggining
+use -v for viewing logs as program runs
 ```
 $ python scrambled-strings.py --dictionary <dictionary file> --input <input file> input -v
 ```
