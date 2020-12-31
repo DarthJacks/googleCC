@@ -27,9 +27,9 @@ words from the dictionary that appear (in their original or scrambled form) as s
 given string.
 
 Limits
-● No two words in the dictionary are the same.
-● Each word in the dictionary is between 2 and 105 letters long, inclusive.
-● The sum of lengths of all words in the dictionary does not exceed 105.
+- No two words in the dictionary are the same.
+- Each word in the dictionary is between 2 and 105 letters long, inclusive.
+- The sum of lengths of all words in the dictionary does not exceed 105.
 
 
 
