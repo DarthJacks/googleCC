@@ -34,11 +34,17 @@ given string.
 
 
 ##Execution
+```
 $ python scrambled-strings.py --dictionary <dictionary file> --input <input file>
+```
 #use -v for loggining
+```
 $ python scrambled-strings.py --dictionary <dictionary file> --input <input file> input -v
+```
 
 main will run unit testing to complete the execution 
 
 Unit testing can be run individually by executing
+```
 $ python test.py --dictionary <dictionary file>
+```
