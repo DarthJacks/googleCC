@@ -1,3 +1,4 @@
+# coding=utf-8
 from collections import Counter
 import sys, getopt
 import traceback
@@ -46,11 +47,11 @@ def test_double_words(dictionary_filename):
     for i in wordCount:
         if wordCount[i] > 1:
             doubleWords.append(i)
-            doubleWordsCounter += 1
+            doubleWordsCounter += wordCount[i]
     try:
         assert doubleWordsCounter == 0, "Words in Dictionary must occur only once. " + str(doubleWords) + " appears more"# + str(occurances) + " times"
     except AssertionError:
-        print("AssertionError: Words in Dictionary must occur only once. " + str(doubleWords) + " appears more")
+        print("AssertionError: Words in Dictionary must occur only once. " + str(doubleWords) + " appears more, " + str(doubleWordsCounter))
         double_word_errors += 1
 
     dfile.close()

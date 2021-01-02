@@ -1,3 +1,4 @@
+# coding=utf-8
 import sys, getopt
 import logging
 import test
@@ -82,6 +83,8 @@ if __name__ == "__main__":
 
   if not (test.test_wordlength(dictionary_filename) + test.test_filelength(dictionary_filename) + test.test_double_words(dictionary_filename)):
     runMain(dictionary_filename, input_filename)
+  else:
+    print("Unit Tests failed, Please fix and re-run")
    
 
 
@@ -89,8 +92,8 @@ if __name__ == "__main__":
 
   # logging.basicConfig(filename="example.log", encoding="utf-8", level=logging.DEBUG)
   # logging.debug("This message should go to the log file")
-  # logging.info("So should this")
-  # logging.warning("And this, too")
-  # logging.error("And non-ASCII stuff, too, like Øresund and Malmö")
-  #runMain("dict", "input")
+  # logging.info("")
+  # logging.warning("")
+  # logging.error("")
+
 
